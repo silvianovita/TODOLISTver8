@@ -1,0 +1,12 @@
+D:\Visual Studio 2019\JWT\TODOLISTver8\Data\bin\Debug\netcoreapp3.1\appsettings.Development.json
+D:\Visual Studio 2019\JWT\TODOLISTver8\Data\bin\Debug\netcoreapp3.1\appsettings.json
+D:\Visual Studio 2019\JWT\TODOLISTver8\Data\bin\Debug\netcoreapp3.1\Data.deps.json
+D:\Visual Studio 2019\JWT\TODOLISTver8\Data\bin\Debug\netcoreapp3.1\Data.runtimeconfig.json
+D:\Visual Studio 2019\JWT\TODOLISTver8\Data\bin\Debug\netcoreapp3.1\Data.runtimeconfig.dev.json
+D:\Visual Studio 2019\JWT\TODOLISTver8\Data\bin\Debug\netcoreapp3.1\Data.dll
+D:\Visual Studio 2019\JWT\TODOLISTver8\Data\bin\Debug\netcoreapp3.1\Data.pdb
+D:\Visual Studio 2019\JWT\TODOLISTver8\Data\obj\Debug\netcoreapp3.1\Data.csprojAssemblyReference.cache
+D:\Visual Studio 2019\JWT\TODOLISTver8\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfoInputs.cache
+D:\Visual Studio 2019\JWT\TODOLISTver8\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfo.cs
+D:\Visual Studio 2019\JWT\TODOLISTver8\Data\obj\Debug\netcoreapp3.1\Data.dll
+D:\Visual Studio 2019\JWT\TODOLISTver8\Data\obj\Debug\netcoreapp3.1\Data.pdb
