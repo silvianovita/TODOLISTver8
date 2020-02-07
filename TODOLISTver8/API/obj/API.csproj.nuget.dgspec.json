@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Visual Studio 2019\\JWT\\TODOLISTver8\\API\\API.csproj": {}
+    "D:\\Visual Studio 2019\\JWT\\GitVer8\\TODOLISTver8\\TODOLISTver8\\API\\API.csproj": {}
   },
   "projects": {
-    "D:\\Visual Studio 2019\\JWT\\TODOLISTver8\\API\\API.csproj": {
+    "D:\\Visual Studio 2019\\JWT\\GitVer8\\TODOLISTver8\\TODOLISTver8\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Visual Studio 2019\\JWT\\TODOLISTver8\\API\\API.csproj",
+        "projectUniqueName": "D:\\Visual Studio 2019\\JWT\\GitVer8\\TODOLISTver8\\TODOLISTver8\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "D:\\Visual Studio 2019\\JWT\\TODOLISTver8\\API\\API.csproj",
+        "projectPath": "D:\\Visual Studio 2019\\JWT\\GitVer8\\TODOLISTver8\\TODOLISTver8\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Silvia\\.nuget\\packages\\",
-        "outputPath": "D:\\Visual Studio 2019\\JWT\\TODOLISTver8\\API\\obj\\",
+        "outputPath": "D:\\Visual Studio 2019\\JWT\\GitVer8\\TODOLISTver8\\TODOLISTver8\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -31,8 +31,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Visual Studio 2019\\JWT\\TODOLISTver8\\Data\\Data.csproj": {
-                "projectPath": "D:\\Visual Studio 2019\\JWT\\TODOLISTver8\\Data\\Data.csproj"
+              "D:\\Visual Studio 2019\\JWT\\GitVer8\\TODOLISTver8\\TODOLISTver8\\Data\\Data.csproj": {
+                "projectPath": "D:\\Visual Studio 2019\\JWT\\GitVer8\\TODOLISTver8\\TODOLISTver8\\Data\\Data.csproj"
               }
             }
           }
@@ -105,14 +105,14 @@
         }
       }
     },
-    "D:\\Visual Studio 2019\\JWT\\TODOLISTver8\\Data\\Data.csproj": {
+    "D:\\Visual Studio 2019\\JWT\\GitVer8\\TODOLISTver8\\TODOLISTver8\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Visual Studio 2019\\JWT\\TODOLISTver8\\Data\\Data.csproj",
+        "projectUniqueName": "D:\\Visual Studio 2019\\JWT\\GitVer8\\TODOLISTver8\\TODOLISTver8\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "D:\\Visual Studio 2019\\JWT\\TODOLISTver8\\Data\\Data.csproj",
+        "projectPath": "D:\\Visual Studio 2019\\JWT\\GitVer8\\TODOLISTver8\\TODOLISTver8\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\Silvia\\.nuget\\packages\\",
-        "outputPath": "D:\\Visual Studio 2019\\JWT\\TODOLISTver8\\Data\\obj\\",
+        "outputPath": "D:\\Visual Studio 2019\\JWT\\GitVer8\\TODOLISTver8\\TODOLISTver8\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

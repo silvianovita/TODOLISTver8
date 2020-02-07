@@ -44,6 +44,17 @@ namespace Client.Controllers
             //return RedirectToAction("Index", "ToDoLists", new { area = "ToDoLists" });
             return RedirectToAction(nameof(Index));
         }
+        public ActionResult Register()
+        {
+            var a = HttpContext.Session.GetString("Id");
+            var b = HttpContext.Session.GetString("UserName");
+            //var c = HttpContext.Session.GetString("Token");
+            if (a != null && b != null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -77,6 +88,21 @@ namespace Client.Controllers
             }
         }
 
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public ActionResult Register(UserVM userVM)
+        {
+            var myContent = JsonConvert.SerializeObject(userVM);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = Client.PostAsync("users/register/", byteContent).Result;
+            if (result.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Login");
+            }
+            return View();
+        }
         public async Task<IEnumerable<ToDoListVM>> Search(string keyword, int status)
         {
             try
