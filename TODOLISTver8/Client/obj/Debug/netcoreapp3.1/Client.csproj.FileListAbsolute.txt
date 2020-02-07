@@ -281,3 +281,4 @@ D:\Visual Studio 2019\JWT\GitVer8\TODOLISTver8\TODOLISTver8\Client\bin\Debug\net
 D:\Visual Studio 2019\JWT\GitVer8\TODOLISTver8\TODOLISTver8\Client\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Debug.dll
 D:\Visual Studio 2019\JWT\GitVer8\TODOLISTver8\TODOLISTver8\Client\obj\Debug\netcoreapp3.1\Client.MvcApplicationPartsAssemblyInfo.cs
 D:\Visual Studio 2019\JWT\GitVer8\TODOLISTver8\TODOLISTver8\Client\obj\Debug\netcoreapp3.1\Client.MvcApplicationPartsAssemblyInfo.cache
+D:\Visual Studio 2019\JWT\GitVer8\TODOLISTver8\TODOLISTver8\Client\obj\Debug\netcoreapp3.1\Razor\Views\User\Register.cshtml.g.cs

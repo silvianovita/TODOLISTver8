@@ -121,15 +121,14 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user =  _userServices.Register(userVM);
+                var user = _userServices.Register(userVM);
                 var result = user.Result;
-                return Ok();
-                //if (result.Succeeded)
-                //{
-                //    await _userServices.Login(userVM);
-                //    return Ok(user);
-                //}
-                //AddErrors(result);
+
+                if (result.Succeeded)
+                {
+                    return Ok();
+                }
+                AddErrors(result);
             }
 
             return BadRequest(ModelState);
