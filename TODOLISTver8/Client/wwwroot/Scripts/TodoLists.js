@@ -11,6 +11,7 @@ $(document).ready(function () {
     //$('#selectedChange').change(function () {
     //    //window.alert($('#selectedChange').val());
     table = $("#TodolistData").DataTable({
+        
         serverSide: true,
         ajax:
         //"scripts/server_processing.php",

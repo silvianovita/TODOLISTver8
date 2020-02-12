@@ -68,43 +68,48 @@ namespace API.Controllers
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public ActionResult<IdentityUser> Login(UserVM userVM)
+        public async Task<IActionResult> Login(UserVM userVM)
         {
             if (ModelState.IsValid)
             {
-                var user = _userServices.Login(userVM);
-                if (user != null)
+                var result = await _signInManager.PasswordSignInAsync(userVM.UserName, userVM.Password, false, false);
+                if (result.Succeeded)
                 {
-                    var claims = new[] {
+                    var user = _userServices.Login(userVM);
+                    if (user != null)
+                    {
+                        var claims = new[] {
                     new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                     new Claim("UserName", userVM.UserName),
                    };
 
-                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
 
-                    var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                        var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                    var token = new JwtSecurityToken(
-                        _configuration["Jwt:Issuer"],
-                        _configuration["Jwt:Audience"],
-                        claims,
-                        expires: DateTime.UtcNow.AddMinutes(10),
-                        signingCredentials: signIn
-                        );
-                    var data = user.Result.SingleOrDefault();
-                    return Ok(new JwtSecurityTokenHandler().WriteToken(token) + "..." + data.Id + "..." + data.UserName);
-                }
-                else
-                {
-                    return BadRequest(new { message = "Username or password is invalid" });
+                        var token = new JwtSecurityToken(
+                            _configuration["Jwt:Issuer"],
+                            _configuration["Jwt:Audience"],
+                            claims,
+                            expires: DateTime.UtcNow.AddMinutes(10),
+                            signingCredentials: signIn
+                            );
+                        var data = user.Result.SingleOrDefault();
+                        return Ok(new JwtSecurityTokenHandler().WriteToken(token) + "..." + data.Id + "..." + data.UserName);
+                    }
+                    else
+                    {
+                        return BadRequest(new { message = "Username or password is invalid" });
+                    }
                 }
             }
             else
             {
                 return BadRequest("Failed");
             }
+            return BadRequest("Failed");
         }
 
         [HttpPost("Logout")]
@@ -121,9 +126,9 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _userServices.Register(userVM);
+                var user =  _userServices.Register(userVM);
                 var result = user.Result;
-
+                
                 if (result.Succeeded)
                 {
                     return Ok();

@@ -80,18 +80,29 @@ namespace Data.Repositories
             return result;
         }
 
-        public IEnumerable<ToDoListVM> Paging(string userId, int pageSize, int pageNumber, int param1, string keyword)
+        // IEnumerable<ToDoListVM> Paging(string userId, int param1, string keyword, int pageNumber, int pageSize)
+        public async Task<ToDoListVM> Paging(string userId, int param1, string keyword, int pageNumber, int pageSize)
         {
             using (var conn = new SqlConnection(_connectionString.Value))
             {
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@paramUserId", userId);
+                parameters.Add("@paramUserName", userId);
                 parameters.Add("@pageSize", pageSize);
                 parameters.Add("@pageNumber", pageNumber);
                 parameters.Add("@param1", param1); 
                 parameters.Add("@paramKeyword", keyword);
-                var result = conn.Query<ToDoListVM>("SP_Paging", parameters, commandType: CommandType.StoredProcedure);
+                parameters.Add("@length", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                parameters.Add("@filterLength", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                var result = new ToDoListVM();
+                result.data = await conn.QueryAsync<ToDoListVM>("SP_FilterData", parameters, commandType: CommandType.StoredProcedure);
+                int filterlength = parameters.Get<int>("@filterLength");
+                result.filterLength = filterlength;
+                int length = parameters.Get<int>("@length");
+                result.length = length;
                 return result;
+
+                //var result = conn.Query<ToDoListVM>("SP_FilterData", parameters, commandType: CommandType.StoredProcedure);
+                //return result;
             }
         }
 

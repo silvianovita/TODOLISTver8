@@ -14,7 +14,8 @@ namespace API.Services.Interface
         Task<IEnumerable<ToDoList>> Get(int Id);
 
         IEnumerable<ToDoListVM> Search(string userId, string keyword, int param1);
-        IEnumerable<ToDoListVM> Paging(string userId, int pageSize, int pageNumber, int param1, string keyword);
+        //IEnumerable<ToDoListVM> Paging(string userId, int param1, string keyword, int pageNumber, int pageSize);
+        Task<ToDoListVM> Paging(string userId, int param1, string keyword, int pageNumber, int pageSize);
 
         int Create(ToDoListVM toDoListVM);
         int Update(int id, ToDoListVM toDoListVM);

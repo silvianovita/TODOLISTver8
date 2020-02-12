@@ -82,11 +82,16 @@ namespace API.Controllers
             return _toDoListServices.Search(userId, keyword, param1);
         }
         [HttpGet]
-        [Route("Paging/{userId}/{pageSize}/{pageNumber}/{param1}/{keyword}")]
-        public IEnumerable<ToDoListVM> Paging(string userId, int pageSize, int pageNumber, int param1, string keyword)
+        [Route("Paging")]
+        //public IEnumerable<ToDoListVM> Paging(string userId, int param1, string keyword, int pageNumber, int pageSize)
+        public async Task<ToDoListVM> Paging(string userId, int param1, string keyword, int pageNumber, int pageSize)
         {
-            keyword = keyword.Substring(3);
-            return _toDoListServices.Paging(userId, pageSize, pageNumber, param1, keyword);
+            //keyword = keyword.Substring(3);
+            if (keyword==null)
+            {
+                keyword = "";
+            }
+            return await _toDoListServices.Paging(userId, param1, keyword, pageNumber, pageSize);
         }
     }
 }

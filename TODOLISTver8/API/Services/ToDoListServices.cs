@@ -41,9 +41,10 @@ namespace API.Services
             return _toDoListRepository.GetTodoLists(userId,status);
         }
 
-        public IEnumerable<ToDoListVM> Paging(string userId, int pageSize, int pageNumber, int param1, string keyword)
+       // public IEnumerable<ToDoListVM> Paging(string userId, int param1, string keyword, int pageNumber, int pageSize)
+        public async Task<ToDoListVM> Paging(string userId, int param1, string keyword, int pageNumber, int pageSize)
         {
-            return _toDoListRepository.Paging(userId, pageSize, pageNumber, param1, keyword);
+            return await _toDoListRepository.Paging(userId, param1, keyword, pageNumber, pageSize);
         }
 
         public IEnumerable<ToDoListVM> Search(string userId, string keyword, int param1)

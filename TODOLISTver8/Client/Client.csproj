@@ -5,10 +5,17 @@
     <UserSecretsId>aspnet-Client-0BE098A7-ECB6-452B-B296-6008754833FD</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="Views\User\Index.cshtml" />
+    <None Include="Views\User\Login.cshtml" />
+    <None Include="Views\User\Register.cshtml" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="DataTables.AspNet.AspNetCore" Version="2.0.2" />
     <PackageReference Include="DataTables.AspNet.Core" Version="2.0.2" />
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.1" />

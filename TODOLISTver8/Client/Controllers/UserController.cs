@@ -42,7 +42,17 @@ namespace Client.Controllers
                 return View();
             }
             //return RedirectToAction("Index", "ToDoLists", new { area = "ToDoLists" });
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Main));
+        }
+        public IActionResult Main()
+         {
+            var id = HttpContext.Session.GetString("Id");
+            if (id != null)
+            {
+                return View();
+            }
+            return RedirectToAction(nameof(Login));
+
         }
         public ActionResult Register()
         {
@@ -51,8 +61,9 @@ namespace Client.Controllers
             //var c = HttpContext.Session.GetString("Token");
             if (a != null && b != null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Main");
             }
+
             return View();
         }
 
@@ -72,13 +83,15 @@ namespace Client.Controllers
                 {
                     var user = result.Content.ReadAsStringAsync().Result.Replace("\"", "").Split("...");
                     HttpContext.Session.SetString("Token", "Bearer " + user[0]);
+                    //HttpContext.Session.SetString("Id", userVM.Id);
                     HttpContext.Session.SetString("Id", user[1]);
+                    HttpContext.Session.SetString("UserName", user[2]);
                     Client.DefaultRequestHeaders.Add("Authorization", user[0]);
                     //var data = result.Content.ReadAsAsync<User>();
                     //data.Wait();
                     //var user = data.Result;
                     //HttpContext.Session.SetString("Id", user.Id.ToString());
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Main));
                 }
                 return View();
             }
@@ -99,10 +112,11 @@ namespace Client.Controllers
             var result = Client.PostAsync("users/register/", byteContent).Result;
             if (result.IsSuccessStatusCode)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Main");
             }
             return View();
         }
+
         public async Task<IEnumerable<ToDoListVM>> Search(string keyword, int status)
         {
             try
@@ -115,21 +129,24 @@ namespace Client.Controllers
                     return e;
                 }
             }
-            catch (Exception)
+            catch (Exception m)
             {
 
             }
             return null;
         }
-        public async Task<IEnumerable<ToDoListVM>> Paging(int pageSize, int pageNumber, int status, string keyword)
+        public async Task<ToDoListVM> Paging(int pageSize, int pageNumber, int status, string keyword)
         {
             try
             {
-                //Client.DefaultRequestHeaders.Add("Authorization", HttpContext.Session.GetString("Token"));
-                var response = await Client.GetAsync("ToDoLists/Paging/" + HttpContext.Session.GetString("Id") + "/" +pageSize+"/"+ pageNumber+"/" + status + "/" + keyword);
+                Client.DefaultRequestHeaders.Add("Authorization", HttpContext.Session.GetString("Token"));
+                var response = await Client.GetAsync("ToDoLists/paging?UserId=" + HttpContext.Session.GetString("UserName") + "&status=" + status + "&keyword=" + keyword + "&pageSize=" + pageSize + "&pageNumber=" + pageNumber);
+                var testing = response;
+                //var response = await Client.GetAsync("ToDoLists/Paging/" + HttpContext.Session.GetString("Id") + "/" +status+"/"+ keyword+"/" + pageNumber + "/" + pageSize);
                 if (response.IsSuccessStatusCode)
                 {
-                    var e = await response.Content.ReadAsAsync<List<ToDoListVM>>();
+                    //var e = await response.Content.ReadAsAsync<ToDoListVM>();
+                    var e = await response.Content.ReadAsAsync<ToDoListVM>();
                     return e;
                 }
             }
@@ -155,16 +172,16 @@ namespace Client.Controllers
             return null;
         }
 
-        [HttpGet("User/PageData/{status}")]
+        //[HttpGet("User/PageData/{status}")]
         public IActionResult PageData(int status, IDataTablesRequest request)
         {
             var pageSize = request.Length;
             var pageNumber = request.Start / request.Length + 1;
-            var keyword = "val" + request.Search.Value;
-            var data = Search(keyword, status).Result;
-            var filteredData = data;
+            var keyword = request.Search.Value;
+            //var data = Search(keyword, status).Result;
+            //var filteredData = data;
             var dataPage = Paging(pageSize, pageNumber, status, keyword).Result;
-            var response = DataTablesResponse.Create(request, data.Count(), filteredData.Count(), dataPage);
+            var response = DataTablesResponse.Create(request, dataPage.length, dataPage.filterLength, dataPage.data);
 
             return new DataTablesJsonResult(response, true);
             //var data = List(status).Result;
@@ -249,5 +266,6 @@ namespace Client.Controllers
             HttpContext.Session.Remove("Id");
             return RedirectToAction(nameof(Index));
         }
+
     }
 }

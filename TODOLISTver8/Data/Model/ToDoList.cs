@@ -11,6 +11,7 @@ namespace Data.Model
         public string Name { get; set; }
         public int Status { get; set; }
         public string userId { get; set; }
+        public string userName { get; set; }
         public ToDoList() {  }
         public ToDoList(ToDoListVM toDoListVM)
         {

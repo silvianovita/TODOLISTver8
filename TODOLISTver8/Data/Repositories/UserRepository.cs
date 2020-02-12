@@ -100,7 +100,6 @@ namespace Data.Repositories
             var result = await _userManager.CreateAsync(user, userVM.Password);
             return result;
         }
-
         //public User Login(UserVM userVM)
         //{
         //    using (var conn = new SqlConnection(_connectionString.Value))

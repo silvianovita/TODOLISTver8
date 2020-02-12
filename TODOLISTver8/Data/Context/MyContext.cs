@@ -12,6 +12,8 @@ namespace Data.Context
     {
         public DbSet<User> Users { get; set; }
         public DbSet<ToDoList> ToDoLists { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Item> Items { get; set; }
         public MyContext(DbContextOptions<MyContext> options) : base(options)
         {
         }
